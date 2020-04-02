@@ -2,9 +2,13 @@
   <div style="margin-bottom: 20px">
     <v-card>
       <v-img />
+      <v-card-title>
+        <h3>
+          <nuxt-link :to="`/user/${post.id}`">{{ post.User.nickname }}</nuxt-link>
+        </h3>
+      </v-card-title>
       <v-card-text>
         <div>
-          <h3>{{ post.User.nickname }}</h3>
           <div>{{ post.content }}</div>
         </div>
       </v-card-text>
@@ -19,7 +23,8 @@
           <v-icon>mdi-comment-outline</v-icon>
         </v-btn>
         <v-menu offset-y open-on-hover>
-          <template v-slot:activator="{on}">z
+          <template v-slot:activator="{on}">
+            z
             <v-btn text color="orange" v-on="on">
               <v-icon>mdi-dots-horizontal</v-icon>
             </v-btn>
@@ -80,4 +85,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+a {
+  color: inherit;
+  text-decoration: none;
+}
+</style>

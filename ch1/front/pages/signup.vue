@@ -64,6 +64,20 @@ export default {
       termsRules: [v => !!v || "약관에 동의해야 합니다."]
     };
   },
+  computed: {
+    me() {
+      return this.$store.state.users.me;
+    }
+  },
+  watch: {
+    me(value, oldValue) {
+      if (value) {
+        this.$router.push({
+          path: "/"
+        });
+      }
+    }
+  },
   methods: {
     onSubmitForm() {
       //태그에 ref속성을 주게되면 this.$refs로 접근이 가능해진다.
@@ -80,8 +94,8 @@ export default {
             });
           })
           .catch(() => {
-            alert("회원가입 실패")
-          })
+            alert("회원가입 실패");
+          });
       } else {
         alert("폼이 유효하지 않습니다.");
       }
@@ -91,7 +105,8 @@ export default {
     return {
       title: "회원가입"
     };
-  }
+  },
+  middleware: "anonymous"
 };
 </script>
 
